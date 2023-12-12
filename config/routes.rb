@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   
   resources :venues, only: [:index, :create, :show, :update, :destroy]
   resources :bands, only: [:index, :create, :show]
-  resources :events, only: [:index, :create, :destroy] #add update later
-  resources :attendees, only: [:create, :update, :destroy]
+  resources :events, only: [:index, :create, :show, :destroy] #add update later
+  resources :attendees, only: [:create, :destroy]
   resources :favorite_bands, only: [:create, :update, :destroy]
 
   #Log in/out routes

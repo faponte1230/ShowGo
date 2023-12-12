@@ -1,9 +1,9 @@
 import React from 'react'
 import { useContext } from "react";
 import { UserContext } from "./Context/user";
-import BandCard from './BandCard';
-function BandsPage() {
-    const { bands, loggedIn} = useContext(UserContext)
+import EventCard from './EventCard';
+function EventsPage() {
+    const { events, loggedIn} = useContext(UserContext)
 
   if (!loggedIn) {
         
@@ -17,15 +17,13 @@ function BandsPage() {
   } else { 
     return (
     <div>
-      <h2>Bands</h2>
-      <div className="bands-container">
-      {bands.map((band) => (
-        <BandCard key={band.id} band={band}/>
-        ))}       
+      <h2>EventsPage</h2>
+      <div className="venues-container">
+      {events.map((event) => (<EventCard key={event.id} event={event} />))}       
       </div>
     </div>
     )
   }
 }
 
-export default BandsPage
+export default EventsPage

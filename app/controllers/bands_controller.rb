@@ -1,5 +1,7 @@
 class BandsController < ApplicationController
-
+    before_action :authorize, only: [:index, :show]
+    before_action :authorize_admin, only: [:create]
+    
     def index
         bands = Band.all  
         render json: bands

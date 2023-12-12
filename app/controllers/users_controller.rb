@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
     skip_before_action :authorize, only:[:create]
-    #after_create :set_first_user_as_admin
+    
  
     # POST /users
     def create 
@@ -15,22 +15,14 @@ class UsersController < ApplicationController
  
     #GET users/show FIX LATER WITH SESSION FIND
     def show
-        user = User.find_by(id: session[:id])
+        user = User.find_by(id: session[:user_id])
         render json: user, status: :ok
     end
  
     private
     # Only allow a list of trusted parameters through.
     def user_params
-        params.require(:user).permit(:username, :password, :password_confirmation)
-    end
- 
-    def set_first_user_as_admin
-        if User.where(isAdmin: true).count == 1
-            update_column(:isAdmin, false)
-        elsif User.where(isAdmin: true).count.zero?
-            update_column(:isAdmin, true)
-        end
+        params.permit(:username, :password, :password_confirmation)
     end
      
 end

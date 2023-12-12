@@ -1,30 +1,33 @@
 import React, { useContext } from 'react';
 import { UserContext } from './Context/user';
+import VenueCard from './VenueCard';
 
-function Home() {
+function VenuesPage() {
   const { venues, loggedIn } = useContext(UserContext);
 
-  if (loggedIn) {
+  if (!loggedIn) {
     return (
-      <div>
-        <h2>Venues</h2>
-        <ul>
-          {Array.isArray(venues) ? (
-            venues.map((v) => <li key={v.id} id={v.id}>{v.venue_name}</li>)
-          ) : (
-            <li>No venues available</li>
-          )}
-        </ul>
-      </div>
+    <div>
+      <h1>Welcome to ShowGO!</h1>
+      <p>Please login or signup to use features</p>
+    </div>
+    
     );
   } else {
     return (
-      <div>
-        <h1>Welcome to ShowGO!</h1>
-        <p>Please login or signup to use features</p>
+
+    <div>  
+      <h2>Venues</h2>
+      <div className="venues-container">
+      {venues.map((venue) => (
+          <VenueCard key={venue.id} venue={venue} />
+        ))}
       </div>
+      <br/>
+
+    </div>
     );
   }
 }
 
-export default Home;
+export default VenuesPage;

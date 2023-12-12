@@ -1,6 +1,6 @@
 
 ## ShowGO
-ShowGO is a dynamic full-stack application that connects entertainment enthusiasts with venues, bands, and events. It leverages a React frontend and a robust Ruby on Rails backend. This application empowers users to create accounts, discover venues, attend events, favorite bands, and conveniently manage their profile.
+ShowGO is a dynamic full-stack application that connects entertainment enthusiasts with venues, bands, and events. Utilizing a React frontend and a Ruby on Rails backend, ShowGO allows users to create accounts, discover venues, attend events, favorite bands, and conveniently manage their profile.
 
 ## Technologies Used
 Ruby on Rails

@@ -25,4 +25,12 @@ class ApplicationController < ActionController::API
     render json: { errors: invalid.record.errors}, status: :unprocessable_entity 
   end
 
+  def authorize_admin
+    # Additional logic for admin-specific authorization
+    authorize
+    unless current_user.is_admin?
+      render json: { error: 'Unauthorized. Admin permissions required.' }, status: :forbidden
+    end
+  end
+
 end

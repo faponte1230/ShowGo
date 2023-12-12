@@ -17,31 +17,8 @@ function NavBar(){
             
         })
     }
-    if(loggedIn){
+    if(!loggedIn){
         return (
-            <div>
-                <h1>
-                    Hello    <br/>
-                    <button onClick={logoutUser}> Logout </button>
-                </h1>
-                <br/>
-
-                <Link to='/'>
-                    <button className="button" > Home </button>
-                </Link>
-
-                <Link to='/bands'>
-                    <button className="button"> Bands </button>
-                </Link>
-
-                <Link to='/myprofile'>
-                    <button className="button"> My Profile </button>
-                </Link>
-
-            </div>
-        )
-    } else {
-        return(
             <div>
                 <Link to='/login'>
                     <button className="button"> login </button>
@@ -50,13 +27,39 @@ function NavBar(){
                 <Link to='/signup'>
                     <button className="button" > Signup </button>
                 </Link>
-                
+            </div>
+        )
+    } else {
+        return(
+            <div>
+                <h4>
+                    Hello {user.username} <br/>
+                    <button onClick={logoutUser}> Logout </button>
+                </h4>
+                <br/>
 
+                <Link to='/'>
+                    <button className="button" > Home </button>
+                </Link>
                 
+                <Link to='/venues'>
+                    <button className="button"> Venues </button>
+                </Link>
 
-                
+                <Link to='/bands'>
+                    <button className="button"> Bands </button>
+                </Link>
+
+                <Link to='/events'>
+                    <button className="button"> Events </button>
+                </Link>
+
+                <Link to='/myprofile'>
+                    <button className="button"> My Profile </button>
+                </Link>
 
             </div>
+        
         )
     }
 }

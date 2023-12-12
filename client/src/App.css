@@ -1,5 +1,7 @@
+
 .App {
   text-align: center;
+  height: 100%;
 }
 
 .App-logo {
@@ -35,4 +37,73 @@
   to {
     transform: rotate(360deg);
   }
+}
+.header {
+  font-weight: bold;
+  text-align: left;
+  margin-left: 20px; /* Adjust the margin as needed */
+}
+
+.venues-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center; 
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 20px;
+  margin-left: 40px; /* Add margin to the left */
+  margin-right: 40px; /* Add margin to the right */
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 10px rgba(115, 16, 16, 0.1); /* Adjust the third value (10px) for elevation */
+
+}
+
+.bands-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center; 
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 20px;
+  margin-left: 40px; /* Add margin to the left */
+  margin-right: 40px; /* Add margin to the right */
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 10px rgba(29, 34, 206, 0.1); /* Adjust the third value (10px) for elevation */
+
+}
+
+.venues-sample-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center; 
+ 
+  max-width: 100%;
+  padding: 20px;
+  margin-left: 40px; /* Add margin to the left */
+  margin-right: 40px; /* Add margin to the right */
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 10px rgba(115, 16, 16, 0.1); /* Adjust the third value (10px) for elevation */
+
+}
+.bands-sample-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  max-width: 100%;
+  padding: 10px; /* Reduce top and bottom padding */
+  margin-left: 40px;
+  margin-right: 40px;
+  margin-top: 20px; /* Adjust margin at the top */
+  margin-bottom: 20px; /* Adjust margin at the bottom */
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 10px rgba(29, 34, 206, 0.1);
+}
+
+.venue-card {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  border: 2px solid #ddd;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
 }

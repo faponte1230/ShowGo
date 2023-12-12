@@ -1,4 +1,6 @@
 class VenuesController < ApplicationController
+  before_action :authorize, only: [:index, :show]
+  before_action :authorize_admin, only: [:create, :update, :destroy]
 
   def index
     venues = Venue.all  
@@ -15,7 +17,7 @@ class VenuesController < ApplicationController
   end
 
   def show
-    venue = Venue.find_by(id: params[:id])
+    venue = find_venue
     render json: venue, status: :ok
   end
 
@@ -28,6 +30,12 @@ class VenuesController < ApplicationController
           render json: { error: venue.errors.full_messages}, status: :unprocessable_entity
       end
   end
+
+  def destroy
+    venue = find_venue
+    venue.destroy
+    head :no_content
+end
 
   private
 
