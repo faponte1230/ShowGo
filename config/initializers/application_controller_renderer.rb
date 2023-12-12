@@ -6,3 +6,7 @@
 #     https: false
 #   )
 # end
+
+
+#lsof -ti:3000 | xargs kill -9
+#terminates all PID's occupying port 3000
