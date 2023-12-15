@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :bands, only: [:index, :create, :show]
   resources :events, only: [:index, :create, :show, :destroy] #add update later
   resources :attendees, only: [:create, :destroy]
-  resources :favorite_bands, only: [:create, :update, :destroy]
+  resources :favorite_bands, only: [:create, :destroy]
 
   #Log in/out routes
   post '/login', to: "sessions#create"
@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   #Create & Read route for User
   get '/me', to: "users#show"
   post '/signup', to: "users#create"
-  #get '/me', to: "users#show"
+  
   
   
   # Routing logic: fallback requests for React Router.

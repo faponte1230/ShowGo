@@ -12,30 +12,38 @@ function NavBar(){
             headers: {'Content-Type' : 'application/json'}
         })
         .then(()=> {
-            navigate('/login')
+            navigate('/')
             logout()
             
         })
     }
     if(!loggedIn){
         return (
-            <div>
-                <Link to='/login'>
+            <div className="home-div">
+                {/* <Link to='/login'>
                     <button className="button"> login </button>
                 </Link>
 
                 <Link to='/signup'>
                     <button className="button" > Signup </button>
-                </Link>
+                </Link> */}
             </div>
         )
     } else {
         return(
             <div>
-                <h4>
+                <br/>
+                <header className="header">
+                <img src={'https://miro.medium.com/v2/resize:fit:2400/1*0bzg8mvGWxlTK7V0krpq2w.jpeg'}
+                alt={'ShowGO'}
+                style={{ width: '100px', height: '100px' }}
+                />
+                <h4 className="header-button">
                     Hello {user.username} <br/>
                     <button onClick={logoutUser}> Logout </button>
                 </h4>
+                </header>
+                
                 <br/>
 
                 <Link to='/'>

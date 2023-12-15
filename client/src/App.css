@@ -2,6 +2,8 @@
 .App {
   text-align: center;
   height: 100%;
+  justify-content: center;
+
 }
 
 .App-logo {
@@ -41,7 +43,14 @@
 .header {
   font-weight: bold;
   text-align: left;
-  margin-left: 20px; /* Adjust the margin as needed */
+  margin-left: 40px; /* Adjust the margin as needed */
+}
+
+.header-button {
+  font-weight: bold;
+  text-align: left;
+  margin-left: 1470px;
+  margin-top: -20px; /* Adjust the margin as needed */
 }
 
 .venues-container {
@@ -53,7 +62,7 @@
   padding: 20px;
   margin-left: 40px; /* Add margin to the left */
   margin-right: 40px; /* Add margin to the right */
-  background-color: #f9f9f9;
+  background-color: rgba(122, 118, 118, 0.3);
   box-shadow: 0 5px 10px rgba(115, 16, 16, 0.1); /* Adjust the third value (10px) for elevation */
 
 }
@@ -67,11 +76,43 @@
   padding: 20px;
   margin-left: 40px; /* Add margin to the left */
   margin-right: 40px; /* Add margin to the right */
-  background-color: #f9f9f9;
+  background-color: rgba(122, 118, 118, 0.3);
   box-shadow: 0 5px 10px rgba(29, 34, 206, 0.1); /* Adjust the third value (10px) for elevation */
 
 }
+.bands-page-container {
+  display: block;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 60%;
+  margin: 0 auto; /* Center the container with automatic left and right margins */
+  padding: 20px;
+  background-color: rgba(122, 118, 118, 0.3);
+  box-shadow: 0 5px 10px rgba(22, 24, 91, 0.1);
+}
+.venues-page-container {
+  display: block;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 60%;
+  margin: 0 auto; /* Center the container with automatic left and right margins */
+  padding: 20px;
+  background-color: rgba(122, 118, 118, 0.3);
+  box-shadow: 0 5px 10px rgba(22, 24, 91, 0.1);
+}
+.event-details-container {
+  display: block;
 
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 30%;
+  padding: 20px;
+  margin-left: 40px; /* Adjust this margin based on your design */
+  margin-right: 40px; /* Adjust this margin based on your design */
+  background-color: rgba(122, 118, 118, 0.8);
+  box-shadow: 0 5px 10px rgba(22, 24, 91, 0.1);
+  margin: 0 auto;
+}
 .venues-sample-container {
   display: flex;
   flex-wrap: nowrap;
@@ -81,7 +122,8 @@
   padding: 20px;
   margin-left: 40px; /* Add margin to the left */
   margin-right: 40px; /* Add margin to the right */
-  background-color: #f9f9f9;
+  background-color: rgba(122, 118, 118, 0.3);
+
   box-shadow: 0 5px 10px rgba(115, 16, 16, 0.1); /* Adjust the third value (10px) for elevation */
 
 }
@@ -95,7 +137,8 @@
   margin-right: 40px;
   margin-top: 20px; /* Adjust margin at the top */
   margin-bottom: 20px; /* Adjust margin at the bottom */
-  background-color: #f9f9f9;
+  background-color: rgba(122, 118, 118, 0.3);
+
   box-shadow: 0 5px 10px rgba(29, 34, 206, 0.1);
 }
 
@@ -107,3 +150,79 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   margin-right: 20px;
 }
+
+.user-events-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center; 
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 20px;
+  margin-left: 40px; /* Add margin to the left */
+  margin-right: 40px; /* Add margin to the right */
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 10px rgba(29, 34, 206, 0.1); /* Adjust the third value (10px) for elevation */
+  background-color: rgba(247, 10, 10, 0.2);
+}
+.user-events-container-inner {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center; 
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 20px;
+  margin-left: 40px; /* Add margin to the left */
+  margin-right: 40px; /* Add margin to the right */
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 10px rgba(29, 34, 206, 0.1); /* Adjust the third value (10px) for elevation */
+  background-color: rgba(247, 10, 10, 0);
+}
+.favorite-bands-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center; 
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 20px;
+  margin-left: 40px; /* Add margin to the left */
+  margin-right: 40px; /* Add margin to the right */
+  background-color: #f9f9f9;
+  box-shadow: 0 5px 10px rgba(29, 34, 206, 0.1); /* Adjust the third value (10px) for elevation */
+  background-color: rgba(105, 63, 220, 0.2);
+}
+.favorite-bands-container-inner {
+  display: flex;
+  flex-wrap: noswrap;
+  justify-content: center; 
+  overflow-x: auto;
+  max-width: 100%;
+  padding: 20px;
+  margin-left: 40px; /* Add margin to the left */
+  margin-right: 40px; /* Add margin to the right */
+  background-color: hsl(0, 0%, 98%);
+  box-shadow: 0 5px 10px rgba(29, 34, 206, 0.1); /* Adjust the third value (10px) for elevation */
+
+}
+.indi-container {
+  display: flexbox;
+  flex-wrap: nowrap;
+  justify-content: center;
+  max-width: 60%;
+  margin: 0 auto; /* Center the container with automatic left and right margins */
+  padding: 20px;
+  background-color: rgba(240, 230, 230, 0.3);
+  box-shadow: 0 5px 10px rgba(22, 24, 91, 0.5);
+}
+
+.user-profile-container{
+  justify-content: center;
+  display: block;
+  max-width: 25%;
+  box-sizing: border-box;
+  border: 5px solid #c6c1c1;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-left: 625px;
+}
+
+

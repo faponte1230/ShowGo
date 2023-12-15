@@ -3,6 +3,9 @@ import { useContext } from 'react'
 import { UserContext } from './Context/user'
 import VenueCard from './VenueCard'
 import BandCard from './BandCard'
+import LoginForm from './LoginForm'
+import SignupForm from './SignupForm'
+
 function Home() {
 
   const {venues, bands, loggedIn} = useContext(UserContext)
@@ -16,8 +19,19 @@ function Home() {
   if(!loggedIn){
     return (
       <div>
-        <h1>Welcome to ShowGO!</h1>
-        <p>Please login or signup to use features</p>
+        
+        <br/>
+        <img src={'https://miro.medium.com/v2/resize:fit:2400/1*0bzg8mvGWxlTK7V0krpq2w.jpeg'}
+        alt={'ShowGO'}
+        style={{ width: '250px', height: '250px' }}
+        />
+        <br/>
+        <br/>
+        <br/>
+        <div>
+          <LoginForm />
+          <SignupForm />
+        </div>
       </div>
     )
   } else {
@@ -33,7 +47,7 @@ function Home() {
         {sampledVenues.map((venue) => (<VenueCard key={venue.id} venue={venue} />))}
         </div>
         <br/>
-        <h4> Featured Bands</h4>
+        <h2> Featured Bands</h2>
         <div className="bands-sample-container">
         {sampledBands.map((band) => (<BandCard key={band.id} band={band}/>))}
         </div>

@@ -5,6 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url('https://images7.alphacoders.com/133/1339451.png'); /* Replace with your image path or URL */
+  background-size: cover; /* Adjust as needed */
+  background-position: center; /* Adjust as needed */
+  background-repeat: no-repeat; /* Adjust as needed */
+  color: #fff; /* Set your desired text color for better readability on the background image */
+  height: 100vh; /* Ensure the background covers the full viewport height */
+  background-attachment: fixed; /* Optional: Hide any content that overflows the viewport */
 }
 
 code {

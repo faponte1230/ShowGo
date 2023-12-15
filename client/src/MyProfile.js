@@ -1,7 +1,12 @@
 import React from 'react'
 import { useContext } from 'react'
 import { UserContext } from './Context/user'
-import { Link } from 'react-router-dom'
+
+import UserEventsCard from './UserEventsCard'
+import UserFavBandsCard from './UserFavBandsCard'
+
+
+
 function MyProfile() {
     const { user, loggedIn } = useContext(UserContext)
 
@@ -19,23 +24,25 @@ function MyProfile() {
         return(
 
             <div>
-                <h2> Welcome {user.username}! </h2>
                 <p> Click on the links above and view bands & upcoming shows! </p>
+                <div className='user-profile-container'>
                     
-                <h4>Below are your Current Attending Events!</h4>
-                {user.attendees && user.attendees.length > 0 ? (user.attendees.map((attendee) => (
-                    <div key={attendee.id}>
-                        <p>{attendee.attending_band_name} at {attendee.attending_venue.location}</p> 
-                        <Link to={`/venues/${attendee.attending_venue.id}`}>Check Out Venue</Link>
-                    </div>
+                    <h2> Welcome {user.username}! </h2>
+                    <img src={'https://www.shutterstock.com/image-vector/user-profile-icon-square-vector-260nw-1709609656.jpg'} 
+                         alt={'user'}
+                         style={{ width: '150px', height: '150px' }}
+                    />
+                </div>    
+                <h4 className='user-events-container'>Below are your Current Attending Events!</h4>
+                {user.events && user.events.length > 0 ? (user.events.map((event) => (
+                    <UserEventsCard key={event.id} id={event.id} event={event}/>
+                        
+                    
                     ))) : (<h5>Not Attending Events</h5>)}
                     
-                <h4>Below are your Favorite Bands!</h4>
+                <h4 className='favorite-bands-container'>Below are your Favorite Bands!</h4>
                 {user.favorite_bands && user.favorite_bands.length > 0 ? (user.favorite_bands.map((band) => (
-                    <div key={band.id}>
-                        <p>{band.favBand_name}</p>
-                        <Link to={`/bands/${band.fav_band_id}`}>Check Out Band</Link>
-                    </div>))) : (<h5>No Favorite Bands</h5>)}
+                    <UserFavBandsCard key={band.id} id={band.id} band={band} /> ))) : (<h5>No Favorite Bands</h5>)}
             </div>
         )
     }

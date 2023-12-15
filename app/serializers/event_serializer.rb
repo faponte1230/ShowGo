@@ -1,5 +1,5 @@
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :event_name, :hosting_venue, :hosting_venue_id,:band
+  attributes :id, :event_name, :hosting_venue, :hosting_venue_id,:band, :attendees, :attending_count
   belongs_to :band, serializer: BandSerializer
   belongs_to :venue, serializer: VenueSerializer
   has_many :attendees, serializer: AttendeeSerializer
@@ -10,5 +10,9 @@ class EventSerializer < ActiveModel::Serializer
 
   def hosting_venue_id
     object.venue&.id || 'None'
+  end
+
+  def attending_count
+    object.attendees.count
   end
 end

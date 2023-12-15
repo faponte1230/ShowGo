@@ -52,9 +52,10 @@ function LoginForm(){
             <div>
                 <h1> Login </h1>
                 <form onSubmit={handleSubmit}>
-                    
-                    <input type='text' id="username" value={username} onChange={(e)=> setUsername(e.target.value)} placeholder="username"/>
-                    <input type="password" id="password" value={password} onChange={(e)=> setPassword(e.target.value)} placeholder="password"/>
+                    <label> Username </label>
+                    <input type='text' id="user" value={username} onChange={(e)=> setUsername(e.target.value)} placeholder="username"/>
+                    <label> Password </label>
+                    <input type="password" id="pw" value={password} onChange={(e)=> setPassword(e.target.value)} placeholder="password"/>
                     <button type="submit"> Login </button>
                 </form>
             </div>
