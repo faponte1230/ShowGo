@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useContext } from 'react'
 import { UserContext } from './Context/user'
 import VenueCard from './VenueCard'
@@ -8,7 +8,7 @@ import SignupForm from './SignupForm'
 import AdminDashboard from './AdminDashboard'
 
 function Home() {
-
+  const [ btn, setBtn ] = useState(false)
   const {venues, bands, user, loggedIn} = useContext(UserContext)
 
   // Function to randomly sample elements from an array
@@ -18,8 +18,13 @@ function Home() {
   };
 
   if(!loggedIn){
+    
+    const toggleForm = () => {
+      setBtn(!btn);
+    };
+
     return (
-      <div>
+      <div className='home'>
         
         <br/>
         <img src={'https://miro.medium.com/v2/resize:fit:2400/1*0bzg8mvGWxlTK7V0krpq2w.jpeg'}
@@ -30,8 +35,10 @@ function Home() {
         <br/>
         <br/>
         <div>
-          <LoginForm />
-          <SignupForm />
+          { !btn ? <LoginForm /> : <SignupForm />}
+          { !btn ? <h5> New User? </h5> : null}
+           
+          <button onClick={toggleForm}>{ btn ? 'Login' : 'Signup'}</button>
         </div>
       </div>
     )

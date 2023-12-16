@@ -40,6 +40,22 @@
     transform: rotate(360deg);
   }
 }
+
+.home {
+  /* Set fixed position */
+  position: fixed;
+  /* Set the position from the top */
+  top: 0;
+  /* Set width, background, padding, etc. */
+  width: 100%;
+ 
+  color: #fff;
+  padding: 10px;
+  /* Optional: Set margin to provide space for the fixed element */
+  margin-top: 90px;
+
+}
+
 .header {
   font-weight: bold;
   text-align: left;

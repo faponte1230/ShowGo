@@ -44,7 +44,7 @@ function SignupForm(){
 
     return(
         <div>
-            <h2> New User? </h2>
+            <h1> Signup </h1>
             <form onSubmit={handleSubmit}>
                 <label> Username: </label>
                 <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} placeholder="username"/>
@@ -55,13 +55,11 @@ function SignupForm(){
                 <label> Confirm Password: </label>
                 <input type="password" id="password_confirmation" value={password_confirmation} onChange={(e) => setPassword_confirmation(e.target.value)} placeholder="password confirmation"/>
                 <br/>
-                <input type="submit"/>
+                <button type="submit"> Signup </button>
             </form>
             
-            {errorsList ? errorsList.map((e) => (
-                        <ul key={e} style={{color: "red"}}>{e}</ul>))
-                      : null}
-            
+            {errorsList ? errorsList.map((e) => ( <ul key={e} style={{color: "red"}}>{e}</ul>)) : null}
+            <h5> Already a Member? </h5>
         </div>
     )
 }

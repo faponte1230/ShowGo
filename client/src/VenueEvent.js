@@ -97,10 +97,11 @@ function VenueEvent({ event }) {
         {console.log('Current Event:', event)}
         <h3>{event.event_name}</h3>
         <h4>{`With Special Guest: ${event.band.band_name}`}</h4>
-        {isAttending ? (
-          <button onClick={(e) => handleUnattend(e)}>Unattend</button>
+        {!isAttending ? (
+          <button onClick={(e) => handleAttend(e)}> Attend </button>
         ) : (
-          <button onClick={(e) => handleAttend(e)}>Attend</button>
+          
+          <button onClick={(e) => handleUnattend(e)}> Unattend </button>
         )}
         {user.is_admin ? (
           <div>

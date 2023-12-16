@@ -73,9 +73,9 @@ function DetailsBand() {
         <br/>
         <p>{band.genre}</p>
         
-          <button onClick={(e) => handleUnfav(e)}>Unattend</button>
+          <button onClick={(e) => handleUnfav(e)}> Add To Favorites </button>
         
-          <button onClick={(e) => handleFav(e)}>Attend</button>
+          <button onClick={(e) => handleFav(e)}> Remove From Favorites </button>
         
         {/* Check if events exist in the band object */}
         {band.events && band.events.length > 0 ? (

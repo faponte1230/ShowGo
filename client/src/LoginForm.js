@@ -56,6 +56,8 @@ function LoginForm(){
                     <input type='text' id="user" value={username} onChange={(e)=> setUsername(e.target.value)} placeholder="username"/>
                     <label> Password </label>
                     <input type="password" id="pw" value={password} onChange={(e)=> setPassword(e.target.value)} placeholder="password"/>
+                    <br/>
+                    <br/>
                     <button type="submit"> Login </button>
                 </form>
             </div>
