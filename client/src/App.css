@@ -101,7 +101,6 @@
   box-shadow: 0 5px 10px rgba(22, 24, 91, 0.1);
 }
 .event-details-container {
-  display: block;
 
   flex-wrap: wrap;
   justify-content: center;
@@ -215,6 +214,7 @@
 }
 
 .user-profile-container{
+  flex-wrap: nowrap;
   justify-content: center;
   display: block;
   max-width: 25%;
@@ -222,7 +222,7 @@
   border: 5px solid #c6c1c1;
   padding: 10px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  margin-left: 625px;
+  margin-left: 625px ;
 }
 
 

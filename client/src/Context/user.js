@@ -57,6 +57,18 @@ function UserProvider( { children } ){
         })
     }
    
+    const addBand = (newBand) => {
+        setBands([...bands, newBand])
+    }
+
+    const addVenue = (newVenue) => {
+        setVenues([...venues, newVenue])
+    }
+
+    const addEvent = (newEvent) =>{
+        setEvents([...events, newEvent])
+    }
+
 
     const login = (user) => {
         setUser(user)
@@ -82,7 +94,7 @@ function UserProvider( { children } ){
         setLoggedIn(true)
     }
     return(
-        <UserContext.Provider value={ {user, bands, venues, events, setEvents, login, logout, signup, loggedIn, setUser}}>
+        <UserContext.Provider value={ {user, bands, addBand, addVenue, venues, events, setEvents, addEvent, login, logout, signup, loggedIn, setUser}}>
             {children}
         </UserContext.Provider>
 

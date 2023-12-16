@@ -12,6 +12,12 @@ class EventsController < ApplicationController
       render json: event, status: :created
     end
 
+    def update
+      event = find_event
+      event.update!(event_params)
+      render json: event
+    end
+
     def show
       event = find_event
       render json: event, status: :ok
@@ -30,6 +36,6 @@ class EventsController < ApplicationController
     end
   
     def event_params
-      params.permit(:event_name, :venue_id, :band_id)
+      params.require(:event).permit(:event_name, :venue_id, :band_id)
     end
 end

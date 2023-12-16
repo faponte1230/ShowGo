@@ -2,8 +2,8 @@ Rails.application.routes.draw do
   
   resources :venues, only: [:index, :create, :show, :update, :destroy]
   resources :bands, only: [:index, :create, :show]
-  resources :events, only: [:index, :create, :show, :destroy] #add update later
-  resources :attendees, only: [:create, :destroy]
+  resources :events, only: [:index, :create, :show, :update, :destroy] #add destroy
+  resources :attendees, only: [:create, :show, :destroy]
   resources :favorite_bands, only: [:create, :destroy]
 
   #Log in/out routes
@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   #Create & Read route for User
   get '/me', to: "users#show"
   post '/signup', to: "users#create"
+
   
   
   

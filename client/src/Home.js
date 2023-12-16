@@ -5,10 +5,11 @@ import VenueCard from './VenueCard'
 import BandCard from './BandCard'
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
+import AdminDashboard from './AdminDashboard'
 
 function Home() {
 
-  const {venues, bands, loggedIn} = useContext(UserContext)
+  const {venues, bands, user, loggedIn} = useContext(UserContext)
 
   // Function to randomly sample elements from an array
   const sampleArray = (array, size) => {
@@ -35,6 +36,9 @@ function Home() {
       </div>
     )
   } else {
+    if (user.is_admin) {
+      return <AdminDashboard />;
+    }
     // Sample 3 venues and bands
     const sampledVenues = sampleArray(venues, 3);
     const sampledBands = sampleArray(bands, 3);

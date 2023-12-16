@@ -8,10 +8,13 @@ function DetailsBand() {
   const [errors, setErrors]  = useState([])
   const { bands , user, setUser } = useContext(UserContext)
   const band = bands.find((b) => b.id === parseInt(id, 10))
+  // const isFavorite = user.favorite_bands.some((ev) => ev.favorite_band_id.id === band.id);
+  //let userFavBand = user.favorite_bands.find((ev) => ev.favorite_band_id.id === band.id)
+ //FIX DELETE
 
   console.log(band)
-  function handleFav(e){
-    e.preventDefault()
+  function handleFav(e) {
+    e.preventDefault();
     fetch('/favorite_bands', {
       method: 'POST',
       headers: {
@@ -21,22 +24,42 @@ function DetailsBand() {
         favorite_band: {
           band_id: band.id,
           user_id: user.id
-        }})
+        }
+      })
     })
       .then((res) => {
         if (res.ok) {
-          setUser({...user, favorite_bands:[...user.favorite_bands, band]})
-          alert(`You're A Fan of ${band.band_name}!`)
+          res.json().then(() => {
+            setUser({ ...user, favorite_bands: [...user.favorite_bands, band] });
+            //alert(`You're A Fan of ${band.band_name}!`);
+          });
         } else {
           res.json().then((err) => {
-            setErrors([err.error])
-            alert(errors)
+            setErrors([err.error]);
+            alert(errors);
           });
         }
-    })
-      
-}
+      });
+  }
 
+  function handleDeleteUpdate(bandDEL) {
+    setUser({ ...user, favorite_bands: user.favorite_bands.filter((ev) => ev.id !== bandDEL.id) });
+  }
+  
+  function handleUnfav(e) {
+    e.preventDefault();
+    fetch(`/favorite_bands/${user.id}`, {
+      method: 'DELETE',
+    }).then((res) => {
+      if (res.ok) {
+        handleDeleteUpdate(band);
+      } else {
+        res.json().then((err) => {
+          setErrors([err.error]);
+        });
+      }
+    });
+  }
   
   if (!band) {
     return <div>Band not found</div>;
@@ -49,9 +72,11 @@ function DetailsBand() {
         <img src={band.band_img_url} alt={band.band_name} />
         <br/>
         <p>{band.genre}</p>
-
-        <button onClick={(e) => handleFav(e)}> Add To Favorites </button>
-
+        
+          <button onClick={(e) => handleUnfav(e)}>Unattend</button>
+        
+          <button onClick={(e) => handleFav(e)}>Attend</button>
+        
         {/* Check if events exist in the band object */}
         {band.events && band.events.length > 0 ? (
           <div>

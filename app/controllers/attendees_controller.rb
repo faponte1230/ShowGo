@@ -12,6 +12,19 @@ class AttendeesController < ApplicationController
 
     end
     
+    def show
+        event_id = params[:event_id]
+        user_id = params[:user_id]
+
+        user_attendee = Attendee.find_by(event_id: event_id, user_id: user_id)
+
+        if user_attendee
+            render json: user_attendee
+        else
+            render json: { error: 'User attendee not found' }, status: :not_found
+        end
+    end
+
     def destroy
         attendee = find_attendee
         attendee.destroy

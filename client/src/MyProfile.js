@@ -24,7 +24,7 @@ function MyProfile() {
         return(
 
             <div>
-                <p> Click on the links above and view bands & upcoming shows! </p>
+                <p> Click on the links above to view bands & upcoming shows! </p>
                 <div className='user-profile-container'>
                     
                     <h2> Welcome {user.username}! </h2>
