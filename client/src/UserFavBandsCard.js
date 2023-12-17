@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function UserFavBandsCard({band}) {
+  console.log(band)
   return (
     <div className='user-events-container-inner'>
         <div className='indi-container'>

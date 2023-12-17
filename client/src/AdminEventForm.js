@@ -8,12 +8,22 @@ function AdminEventForm({venue}) {
     const [eventName, setEventName] = useState("")
     const [selectedOption, setSelectedOption] = useState('');
     const [errorsList, setErrorsList] = useState([])
-    const { addEvent ,bands } = useContext(UserContext)
+    const { bands , venues , setVenues} = useContext(UserContext)
 
     const handleSelectChange = (event) => {
         setSelectedOption(event.target.value);
     };
- 
+
+    console.log(venue)
+
+    function handleVenueEventAdd(venueEventData){
+       
+        const updatedVenues = venues.map((ven) => ven.id === venue.id ? { ...ven, events: [ ...ven.events, venueEventData] } : ven
+      );
+      setVenues(updatedVenues);
+    }
+
+
     function handleVenueSubmit(e){
         e.preventDefault()
             const eventData = {
@@ -30,8 +40,10 @@ function AdminEventForm({venue}) {
              })
              .then((res) => {
                 if (res.ok){
+                    
                     res.json().then((eventResData) => {
-                        addEvent(eventResData)
+                        //addEvent(eventResData) REMOVE FROM CONTEXT AND SET STATE LIKE BAND AND VENUE 
+                        handleVenueEventAdd(eventResData)
                         console.log(eventResData)
                         //navigate('/events')
                     })
@@ -64,7 +76,7 @@ function AdminEventForm({venue}) {
             {bands.map((b) => (<option key={b.id} value={b.id}>{b.band_name}</option>))}
             </select>
             <br/>
-            <button type="submit"> Add Venue </button>
+            <button type="submit"> Add Event </button>
             </form>
 
             {errorsList ? errorsList.map((e) => (<ul key={e} style={{color: "red"}}>{e}</ul>)) : null}

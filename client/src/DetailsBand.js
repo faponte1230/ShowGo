@@ -6,13 +6,34 @@ import DetailsEvent from './DetailsEvent';
 function DetailsBand() {
   const { id } = useParams()
   const [errors, setErrors]  = useState([])
-  const { bands , user, setUser } = useContext(UserContext)
-  const band = bands.find((b) => b.id === parseInt(id, 10))
-  // const isFavorite = user.favorite_bands.some((ev) => ev.favorite_band_id.id === band.id);
-  //let userFavBand = user.favorite_bands.find((ev) => ev.favorite_band_id.id === band.id)
- //FIX DELETE
 
-  console.log(band)
+  const { bands, setBands , user, setUser } = useContext(UserContext)
+  const band = bands.find((b) => b.id === parseInt(id, 10))
+  
+  // Rest of your code...
+    //FIX DELETE
+
+
+  if (!band) {
+    return <div>Band not found</div>;
+  } else {
+
+    const userFavBand = user.favorite_bands && user.favorite_bands.find((favBnd) => favBnd.fav_band_id === band.id);
+    const isFav = userFavBand !== undefined;
+
+    console.log(userFavBand)
+    console.log(band)
+    
+    function updateBandsWithFavBand(favBandObject) {
+
+    const updatedBands = bands.map((bnd) =>
+      bnd.id === favBandObject.fav_band_id ? { ...bnd, favorite_bands: [...bnd.favorite_bands, favBandObject] } : bnd
+    );
+    console.log(favBandObject)
+    setBands(updatedBands);
+    //console.log(userAttendee)
+    }
+      
   function handleFav(e) {
     e.preventDefault();
     fetch('/favorite_bands', {
@@ -21,17 +42,17 @@ function DetailsBand() {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        favorite_band: {
           band_id: band.id,
           user_id: user.id
-        }
       })
     })
       .then((res) => {
         if (res.ok) {
-          res.json().then(() => {
-            setUser({ ...user, favorite_bands: [...user.favorite_bands, band] });
-            //alert(`You're A Fan of ${band.band_name}!`);
+          res.json().then((favBandData) => {
+            console.log(favBandData)
+            updateBandsWithFavBand(favBandData)
+            setUser({ ...user, favorite_bands: [...user.favorite_bands, favBandData] });
+            alert(`You're A Fan of ${band.band_name}!`);
           });
         } else {
           res.json().then((err) => {
@@ -43,27 +64,33 @@ function DetailsBand() {
   }
 
   function handleDeleteUpdate(bandDEL) {
-    setUser({ ...user, favorite_bands: user.favorite_bands.filter((ev) => ev.id !== bandDEL.id) });
+    console.log(bandDEL)
+    setUser({ ...user, favorite_bands: user.favorite_bands.filter((bnd) => bnd.id !== bandDEL.id) });
+    
+    const updatedBands = bands.map((bnd) =>
+    bnd.id === bandDEL.fav_band_id
+      ? { ...bnd, favorite_bands: bnd.favorite_bands.filter((favBnd) => favBnd.id !== bandDEL.id) }
+      : bnd
+  );
+  setBands(updatedBands);
   }
   
-  function handleUnfav(e) {
+    function handleUnfav(e) {
     e.preventDefault();
-    fetch(`/favorite_bands/${user.id}`, {
+    fetch(`/favorite_bands/${userFavBand.id}`, {
       method: 'DELETE',
     }).then((res) => {
       if (res.ok) {
-        handleDeleteUpdate(band);
+        handleDeleteUpdate(userFavBand);
+        alert(`You're No Longer a Fan of ${band.band_name}!..Bummer..`)
       } else {
         res.json().then((err) => {
           setErrors([err.error]);
         });
       }
     });
-  }
+    }
   
-  if (!band) {
-    return <div>Band not found</div>;
-  } else {
     return (
     <div>
       <div className='bands-page-container'>
@@ -72,11 +99,11 @@ function DetailsBand() {
         <img src={band.band_img_url} alt={band.band_name} />
         <br/>
         <p>{band.genre}</p>
-        
-          <button onClick={(e) => handleUnfav(e)}> Add To Favorites </button>
-        
-          <button onClick={(e) => handleFav(e)}> Remove From Favorites </button>
-        
+        {isFav ? (
+          <button onClick={(e) => handleUnfav(e)}> Remove From Favorites </button>
+        ) : (
+          <button onClick={(e) => handleFav(e)}> Add To Favorites </button>
+        )}
         {/* Check if events exist in the band object */}
         {band.events && band.events.length > 0 ? (
           <div>

@@ -7,15 +7,15 @@ function VenueEvent({ event }) {
   const [ btn , setBtn ] = useState(false)
   const { user, setUser , events , setEvents} = useContext(UserContext);
   const isAttending = user.events.some((ev) => ev.id === event.id);
-  let userAttendee = user.events.find((ev) => ev.id === event.id)?.attendees.find((attendee) => attendee.user_id === user.id);
+  const userAttendee = user.events.find((ev) => ev.id === event.id)?.attendees.find((attendee) => attendee.user_id === user.id);
 
-    //ADD DELETE FIX EVENT NOT UPDATING IMMIDIATELY LIKE EVERYTHING ELSE (MINUS THE POSTS FOR V B & E.....)
+
 
 
   function updateEventsWithAttendee(attendeeObject) {
-    //console.log("UserAttendee:", userAttendee)
+
     const updatedEvents = events.map((ev) =>
-      ev.id === attendeeObject.event.id ? { ...ev, attendees: [attendeeObject.event.attendees] } : ev
+      ev.id === attendeeObject.event.id ? { ...ev, attendees: [...ev.attendees, attendeeObject.event.attendees] } : ev
     );
     setEvents(updatedEvents);
     //console.log(userAttendee)
@@ -26,11 +26,7 @@ function VenueEvent({ event }) {
     };
 
   function handleAttend(e) {
-    // const venueData = {
-    //   venue_name: venueName,
-    //   venue_img_url: venueImgUrl,
-    //   location: location
-    //   };
+
     e.preventDefault();
     fetch('/attendees', {
       method: 'POST',
@@ -48,7 +44,7 @@ function VenueEvent({ event }) {
             console.log('Attendee Object Data:', attendeeObjData);
            
             updateEventsWithAttendee(attendeeObjData);
-            setUser({ ...user, events: [...user.events, event] });
+            setUser({ ...user, events: [...user.events, attendeeObjData.event] });
             
           });
         } else {
@@ -100,7 +96,6 @@ function VenueEvent({ event }) {
         {!isAttending ? (
           <button onClick={(e) => handleAttend(e)}> Attend </button>
         ) : (
-          
           <button onClick={(e) => handleUnattend(e)}> Unattend </button>
         )}
         {user.is_admin ? (
@@ -118,10 +113,3 @@ function VenueEvent({ event }) {
 }
 
 export default VenueEvent;
-
-
-
-// {user.is_admin ? 
-// {console.log('hello')}
-
-// const { user } = useContext(UserContext)

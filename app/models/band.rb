@@ -6,4 +6,5 @@ class Band < ApplicationRecord
 
     #add validations
     validates :band_name, presence: true, uniqueness: true
+    validates :genre, presence: true
 end 

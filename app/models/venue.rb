@@ -4,4 +4,5 @@ class Venue < ApplicationRecord
 
     #add validation
     validates :venue_name, presence: true, uniqueness: true
+    validates :location, presence:  true
 end

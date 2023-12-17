@@ -10,26 +10,53 @@ function UserProvider( { children } ){
     const [ loggedIn, setLoggedIn ] = useState(false)
 
     useEffect(() => {
-        fetch('/me')
-        .then((r) => {
-          if (r.ok){
-            r.json().then((userData) => {
-                setUser(userData)
-                console.log(userData)
-                setLoggedIn(true)
-                fetchBands()
-                fetchEvents()
-                fetchVenues()
-            })
+        const fetchData = async () => {
+          try {
+            const userResponse = await fetch('/me');
+            if (userResponse.ok) {
+              const userData = await userResponse.json();
+              setUser(userData);
+              setLoggedIn(true);
+    
+              // Fetch other data after user data is successfully retrieved
+              fetchBands();
+              fetchEvents();
+              fetchVenues();
+            } else {
+              const errorData = await userResponse.json();
+              setLoggedIn(false);
+              console.error(errorData);
+            }
+          } catch (error) {
+            console.error('Error fetching user data:', error);
           }
-          else {
-            r.json().then((r) => {
-                setLoggedIn(false)
-                console.log(r)
-            })
-          }
-        })
-      }, [])
+        };
+    
+        fetchData();
+      }, []); // Empty dependency array to run the effect only once
+    
+
+    // useEffect(() => {
+    //     fetch('/me')
+    //     .then((r) => {
+    //       if (r.ok){
+    //         r.json().then((userData) => {
+    //             setUser(userData)
+    //             console.log(userData)
+    //             setLoggedIn(true)
+    //             fetchBands()
+    //             fetchEvents()
+    //             fetchVenues()
+    //         })
+    //       }
+    //       else {
+    //         r.json().then((r) => {
+    //             setLoggedIn(false)
+    //             console.log(r)
+    //         })
+    //       }
+    //     })
+    //   }, [])
 
 
     const fetchBands = () => {
@@ -94,7 +121,7 @@ function UserProvider( { children } ){
         setLoggedIn(true)
     }
     return(
-        <UserContext.Provider value={ {user, bands, addBand, addVenue, venues, events, setEvents, addEvent, login, logout, signup, loggedIn, setUser}}>
+        <UserContext.Provider value={ {user, bands, setBands, addBand, addVenue, venues, events, setEvents, addEvent, login, logout, signup, loggedIn, setUser}}>
             {children}
         </UserContext.Provider>
 

@@ -1,7 +1,7 @@
 class FavoriteBandSerializer < ActiveModel::Serializer
-  attributes :id, :favBand_name, :fav_band_id
-  belongs_to :user
-  belongs_to :band, serializer: BandSerializer
+  attributes :id, :favBand_name, :fav_band_id, :user_id
+  
+
 
   def favBand_name
     object.band&.band_name || 'None'
