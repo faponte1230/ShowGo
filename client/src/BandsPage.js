@@ -2,8 +2,9 @@ import React from 'react'
 import { useContext } from "react";
 import { UserContext } from "./Context/user";
 import BandCard from './BandCard';
+
 function BandsPage() {
-    const { bands, loggedIn} = useContext(UserContext)
+  const { bands, loggedIn} = useContext(UserContext)
 
   if (!loggedIn) {
         

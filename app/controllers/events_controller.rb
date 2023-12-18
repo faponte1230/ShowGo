@@ -8,8 +8,12 @@ class EventsController < ApplicationController
     end
   
     def create
-      event = Event.create!(event_params)
-      render json: event, status: :created
+      event = Event.create(event_params)
+      if event.valid?
+        render json: event, status: :ok
+      else
+        render json: { errors: event.errors.full_messages }, status: :unprocessable_entity
+      end
     end
 
     def update

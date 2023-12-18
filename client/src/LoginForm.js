@@ -11,12 +11,6 @@ function LoginForm(){
 
     const { login } = useContext(UserContext)
     const navigate  = useNavigate()
-
-/*    const errorDisplay = errorsList ? errorsList.map((err) => {
-        <div key={err}>
-           <ul style={{color: "red"}}>{err}</ul>
-        </div>
-        }) : null*/
     
     function handleSubmit(e){
         e.preventDefault()
@@ -34,14 +28,11 @@ function LoginForm(){
             if (res.ok){
                 res.json().then((userData) => {
                     login(userData)
-                    console.log(userData)
                     navigate('/myprofile')
                 })
             } else {
                 res.json().then((err) => {
                     setErrorsList([err.error])
-                    //console.log(err)
-                    //console.log(errorsList)
                 })
             }
         }) 

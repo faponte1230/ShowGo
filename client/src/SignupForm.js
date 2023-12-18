@@ -28,7 +28,6 @@ function SignupForm(){
             if (res.ok){
                 res.json().then((userData) => {
                     signup(userData)
-                    console.log(userData)
                     navigate('/myprofile')
                 })
             } else {

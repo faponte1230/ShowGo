@@ -20,13 +20,7 @@ function NavBar(){
     if(!loggedIn){
         return (
             <div className="home-div">
-                {/* <Link to='/login'>
-                    <button className="button"> login </button>
-                </Link>
 
-                <Link to='/signup'>
-                    <button className="button" > Signup </button>
-                </Link> */}
             </div>
         )
     } else {

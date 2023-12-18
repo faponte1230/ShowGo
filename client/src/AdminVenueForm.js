@@ -33,7 +33,6 @@ function AdminVenueForm() {
                 if (res.ok){
                     res.json().then((venueResData) => {
                         addVenue(venueResData)
-                        console.log(venueResData)
                         nav('/venues')
                     })
                 } else {

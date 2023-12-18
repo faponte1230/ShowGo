@@ -10,17 +10,9 @@ function DetailsVenue() {
 
   const venue = venues.find((v) => v.id === parseInt(id, 10));
   
-
-
-
   if (!venue) {
     return <div>Venue not found</div>;
   } else {
-    
-
-
-
-   
     
     return (
       <div className='venues-page-container'>

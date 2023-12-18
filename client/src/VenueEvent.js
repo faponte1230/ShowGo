@@ -5,28 +5,27 @@ import AdminUpdateEventForm from './AdminUpdateEventForm';
 function VenueEvent({ event }) {
   const [errors, setErrors] = useState([]);
   const [ btn , setBtn ] = useState(false)
-  const { user, setUser , events , setEvents} = useContext(UserContext);
+  const { user, setUser , events , setEvents, venues, setVenues} = useContext(UserContext);
   const isAttending = user.events.some((ev) => ev.id === event.id);
   const userAttendee = user.events.find((ev) => ev.id === event.id)?.attendees.find((attendee) => attendee.user_id === user.id);
 
 
+  //POST/DELETE for ATTENDEES
 
 
+  //STATE UPDATE -WITH POST
   function updateEventsWithAttendee(attendeeObject) {
-
     const updatedEvents = events.map((ev) =>
       ev.id === attendeeObject.event.id ? { ...ev, attendees: [...ev.attendees, attendeeObject.event.attendees] } : ev
     );
     setEvents(updatedEvents);
-    //console.log(userAttendee)
-    }
+  }
 
-    const toggleForm = () => {
-      setBtn(!btn);
-    };
-
+  const toggleForm = () => {setBtn(!btn);};
+  
+  
+  //POST FETCH
   function handleAttend(e) {
-
     e.preventDefault();
     fetch('/attendees', {
       method: 'POST',
@@ -41,24 +40,20 @@ function VenueEvent({ event }) {
       .then((res) => {
         if (res.ok) {
           res.json().then((attendeeObjData) => {
-            console.log('Attendee Object Data:', attendeeObjData);
-           
             updateEventsWithAttendee(attendeeObjData);
             setUser({ ...user, events: [...user.events, attendeeObjData.event] });
-            
+            alert(`You're Going To See ${attendeeObjData.event.band.band_name} !!!`)
           });
         } else {
           res.json().then((err) => {
             setErrors([err.error]);
           });
         }
-
       });
-      console.log(user)
-      
   }
 
-  function handleDeleteUpdate(eventDEL) {
+  //STATE UPDATE -DELETE 
+  function handleDeleteAttendeeUpdate(eventDEL) {
     setUser({ ...user, events: user.events.filter((ev) => ev.id !== eventDEL.id) });
     const updatedEvents = events.map((ev) =>
       ev.id === eventDEL.id
@@ -68,13 +63,16 @@ function VenueEvent({ event }) {
     setEvents(updatedEvents);
   }
 
+
+  //DELETE FETCH
   function handleUnattend(e) {
     e.preventDefault();
     fetch(`/attendees/${userAttendee.id}`, {
       method: 'DELETE',
     }).then((res) => {
       if (res.ok) {
-        handleDeleteUpdate(event);
+        handleDeleteAttendeeUpdate(event);
+        alert(`No Longer Attending The ${event.band.band_name} Show !!!`)
       } else {
         res.json().then((err) => {
           setErrors([err.error]);
@@ -82,15 +80,34 @@ function VenueEvent({ event }) {
       }
     });
   }
+ //DELETE/UPDATE FOR EVENT
 
-  function handleEventDelete(){
-    console.log('im gonna delete')
+  //UPDATE STATE -DELETE
+  function handleDeleteEvent(eventData){
+    const updateVenues = venues.map((ven) => ven.id === eventData.hosting_venue_id ? {...ven, events: ven.events.filter((ev) => ev.id !== eventData.id) } : ven)
+    setVenues(updateVenues)
   }
-
+  //FETCH -DELETE
+  function handleEventDelete(e){
+    e.preventDefault()
+    fetch(`/events/${event.id}`, {
+      method: 'DELETE', 
+    }).then((res) => {
+      if (res.ok) {
+        handleDeleteEvent(event);
+        alert(`YOU DELETED The ${event.band.band_name} Show !!!`)
+      } else {
+        res.json().then((err) => {
+          setErrors([err.error]);
+        });
+      }
+    }) 
+  }
+  
+  
   return (
     <div>
       <div className='event-details-container'>
-        {console.log('Current Event:', event)}
         <h3>{event.event_name}</h3>
         <h4>{`With Special Guest: ${event.band.band_name}`}</h4>
         {!isAttending ? (
@@ -104,7 +121,7 @@ function VenueEvent({ event }) {
             <button onClick={handleEventDelete}> Delete </button>
           </div>
         ) : null}
-        {btn ? <AdminUpdateEventForm eventName={event.event_name} event={event}/> : null }
+        {btn ? <AdminUpdateEventForm toggleForm={toggleForm} eventName={event.event_name} event={event}/> : null }
       </div>
       
       {errors ? errors.map((e) => <ul key={e} style={{ color: 'red' }}>{e}</ul>) : null}

@@ -2,10 +2,26 @@ import { useState, useContext } from "react";
 import React from "react";
 import { UserContext } from "./Context/user";
 
-function AdminUpdateEventForm({ eventName, event }) {
+function AdminUpdateEventForm({ toggleForm, eventName, event }) {
   const [newName, setNewName] = useState(eventName);
   const [errorsList, setErrorsList] = useState([]);
-  const { events, setEvents } = useContext(UserContext);
+  const { venues, setVenues } = useContext(UserContext);
+
+  function handleEventUpdate(eventObj) {
+    const updatedVenues = venues.map((ven) => {
+      if (ven.id === eventObj.hosting_venue_id) {
+        const updatedEvents = ven.events.map((ev) =>
+          ev.id === eventObj.id ? { ...ev, event_name: eventObj.event_name } : ev
+        );
+        return { ...ven, events: updatedEvents };
+      } else {
+        return ven;
+      }
+    });
+  
+    setVenues(updatedVenues);
+  }
+  
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -21,20 +37,13 @@ function AdminUpdateEventForm({ eventName, event }) {
       .then((res) => {
         if (res.ok) {
           res.json().then((updateData) => {
-            const updatedEvents = events.map((ev) => {
-              if (ev.id === updateData.id) {
-                return updateData;
-              } else {
-                return ev;
-              }
+            handleEventUpdate(updateData)
+            setNewName('')
+            toggleForm()
             });
-
-            setEvents(updatedEvents);
-          });
         } else {
           res.json().then((err) => {
             setErrorsList([err.error]);
-            console.log(err);
           });
         }
       });

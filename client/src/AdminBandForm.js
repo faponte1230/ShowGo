@@ -3,9 +3,6 @@ import { useContext } from "react";
 import { UserContext } from "./Context/user";
 import { useNavigate } from "react-router-dom";
 
-
-
-//make addBand in context
 function AdminBandForm() {
     const [bandName, setBandName] = useState("")
     const [bandImgUrl, setbandImgUrl] = useState("")
@@ -33,14 +30,11 @@ function AdminBandForm() {
                 if (res.ok){
                     res.json().then((bandResData) => {
                         addBand(bandResData)
-                        console.log(bandResData)
                         nav('/bands')
                     })
                 } else {
                     res.json().then((err) => {
                         setErrorsList(err.errors)
-                        console.log(err)
-                        console.log(errorsList)
                     })
                 }
             })

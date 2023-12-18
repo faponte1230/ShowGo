@@ -3,10 +3,6 @@ import { Link } from 'react-router-dom'
 
 function DetailsEvent({event}) {
 
-
-
-
-
   return (
     <div>
       <div>

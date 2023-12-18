@@ -1,7 +1,7 @@
 class Event < ApplicationRecord
     belongs_to :band
     belongs_to :venue
-    has_many :attendees
+    has_many :attendees, dependent: :destroy
     has_many :users, through: :attendees
 
     #add validation

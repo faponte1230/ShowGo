@@ -14,12 +14,12 @@ function AdminEventForm({venue}) {
         setSelectedOption(event.target.value);
     };
 
-    console.log(venue)
 
     function handleVenueEventAdd(venueEventData){
        
-        const updatedVenues = venues.map((ven) => ven.id === venue.id ? { ...ven, events: [ ...ven.events, venueEventData] } : ven
+        const updatedVenues = venues.map((ven) => ven.id === venueEventData.hosting_venue_id ? { ...ven, events: [ ...ven.events, venueEventData] } : ven
       );
+      
       setVenues(updatedVenues);
     }
 
@@ -42,16 +42,14 @@ function AdminEventForm({venue}) {
                 if (res.ok){
                     
                     res.json().then((eventResData) => {
-                        //addEvent(eventResData) REMOVE FROM CONTEXT AND SET STATE LIKE BAND AND VENUE 
                         handleVenueEventAdd(eventResData)
-                        console.log(eventResData)
-                        //navigate('/events')
+                        setErrorsList([])
+                        setSelectedOption('')
+                        setEventName('')
                     })
                 } else {
                     res.json().then((err) => {
                         setErrorsList(err.errors)
-                        console.log(err)
-                        console.log(errorsList)
                     })
                 }
         }   )

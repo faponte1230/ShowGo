@@ -33,30 +33,8 @@ function UserProvider( { children } ){
         };
     
         fetchData();
-      }, []); // Empty dependency array to run the effect only once
+      }, []); 
     
-
-    // useEffect(() => {
-    //     fetch('/me')
-    //     .then((r) => {
-    //       if (r.ok){
-    //         r.json().then((userData) => {
-    //             setUser(userData)
-    //             console.log(userData)
-    //             setLoggedIn(true)
-    //             fetchBands()
-    //             fetchEvents()
-    //             fetchVenues()
-    //         })
-    //       }
-    //       else {
-    //         r.json().then((r) => {
-    //             setLoggedIn(false)
-    //             console.log(r)
-    //         })
-    //       }
-    //     })
-    //   }, [])
 
 
     const fetchBands = () => {
@@ -64,7 +42,6 @@ function UserProvider( { children } ){
         .then((res) => res.json())
         .then((BandData) => {
             setBands(BandData)
-            //console.log(arcData)
         })
     }
     const fetchEvents = () => {
@@ -72,7 +49,6 @@ function UserProvider( { children } ){
         .then((res) => res.json())
         .then((eventData) => {
             setEvents(eventData)
-            //console.log(arcData)
         })
     }
     const fetchVenues = () => {
@@ -80,7 +56,6 @@ function UserProvider( { children } ){
         .then((res) => res.json())
         .then((venueData) => {
             setVenues(venueData)
-            //console.log(arcData)
         })
     }
    
@@ -121,7 +96,7 @@ function UserProvider( { children } ){
         setLoggedIn(true)
     }
     return(
-        <UserContext.Provider value={ {user, bands, setBands, addBand, addVenue, venues, events, setEvents, addEvent, login, logout, signup, loggedIn, setUser}}>
+        <UserContext.Provider value={ {user, bands, setBands, addBand, addVenue, venues, setVenues, events, setEvents, addEvent, login, logout, signup, loggedIn, setUser}}>
             {children}
         </UserContext.Provider>
 
