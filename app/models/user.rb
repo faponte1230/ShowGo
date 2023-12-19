@@ -4,9 +4,12 @@ class User < ApplicationRecord
     has_many :bands, through: :favorite_bands
     has_many :attendees
     has_many :events, through: :attendees
+
+    has_one_attached :avatar
+    
     # after_create :set_first_user_as_admin
     #add validations
-    validates :username, presence: true, uniqueness: true
+        validates :username, presence: true, uniqueness: true
 
     # private
     # def set_first_user_as_admin
@@ -16,4 +19,7 @@ class User < ApplicationRecord
     #       update_column(:is_admin, true)
     #     end
     # end
+    def image_url
+        Rails.application.routes.url_helpers.url_for(avatar) if avatar.attached?
+    end
 end

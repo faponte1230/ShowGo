@@ -14,8 +14,8 @@ Rails.application.routes.draw do
   get '/me', to: "users#show"
   post '/signup', to: "users#create"
 
-  
-  
+  # #get image
+  # get '/users/get_avatar/:id', to: 'users#get_avatar'
   
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
