@@ -8,9 +8,10 @@ function BandCard({ band }) {
       <div className="venue-card">
 
         <img
+          style={{ width: '150px', height: '150px' }}
           src={band.band_img_url}
           alt={band.band_name}
-          style={{ width: '150px', height: '150px' }} />
+           />
         <h3>{band.band_name}</h3>
         <h4>{band.genre}</h4>
         <Link to={`/bands/${band.id}`}>Check Out Band</Link>

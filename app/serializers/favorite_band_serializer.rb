@@ -1,5 +1,5 @@
 class FavoriteBandSerializer < ActiveModel::Serializer
-  attributes :id, :favBand_name, :fav_band_id, :user_id
+  attributes :id, :favBand_name, :fav_band_id, :user_id, :band
   
 
 

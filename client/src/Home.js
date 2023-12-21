@@ -11,11 +11,6 @@ function Home() {
   const [ btn, setBtn ] = useState(false)
   const {venues, bands, user, loggedIn} = useContext(UserContext)
 
-  // Function to randomly sample elements from an array
-  const sampleArray = (array, size) => {
-    const shuffled = array.sort(() => 0.5 - Math.random());
-    return shuffled.slice(0, size);
-  };
 
   if(!loggedIn){
     
@@ -46,6 +41,13 @@ function Home() {
     if (user.is_admin) {
       return <AdminDashboard />;
     }
+
+  // Function to randomly sample elements from an array
+  const sampleArray = (array, size) => {
+    const shuffled = array.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, size);
+  };
+
     // Sample 3 venues and bands
     const sampledVenues = sampleArray(venues, 3);
     const sampledBands = sampleArray(bands, 3);

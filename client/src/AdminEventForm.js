@@ -8,7 +8,7 @@ function AdminEventForm({venue}) {
     const [eventName, setEventName] = useState("")
     const [selectedOption, setSelectedOption] = useState('');
     const [errorsList, setErrorsList] = useState([])
-    const { bands , venues , setVenues} = useContext(UserContext)
+    const { bands , setBands, venues , setVenues, events, setEvents} = useContext(UserContext)
 
     const handleSelectChange = (event) => {
         setSelectedOption(event.target.value);
@@ -16,11 +16,17 @@ function AdminEventForm({venue}) {
 
 
     function handleVenueEventAdd(venueEventData){
-       
-        const updatedVenues = venues.map((ven) => ven.id === venueEventData.hosting_venue_id ? { ...ven, events: [ ...ven.events, venueEventData] } : ven
-      );
-      
-      setVenues(updatedVenues);
+        //update venue details from here
+        const updatedVenues = venues.map((ven) => ven.id === venueEventData.venue.id ? { ...ven, events: [ ...ven.events, venueEventData] } : ven)
+        setVenues(updatedVenues)
+
+        //update events page from here
+        setEvents([...events,venueEventData])
+        
+        //update bands details page
+        const updatedBands = bands.map((bnd) =>
+        bnd.id === venueEventData.band.id ? { ...bnd, events: [...bnd.events, venueEventData] } : bnd)
+        setBands(updatedBands)
     }
 
 

@@ -9,7 +9,6 @@ import Home from "./Home";
 import EventsPage from "./EventsPage";
 import DetailsVenue from "./DetailsVenue";
 import DetailsBand from "./DetailsBand";
-import DetailsEvent from "./DetailsEvent";
 
 function App() {
   return (
@@ -28,7 +27,7 @@ function App() {
         <Route path="/bands/:id" element={<DetailsBand />} /> 
 
         <Route exact path="/events" element={<EventsPage />} />
-        <Route path="/events/:id" element={<DetailsEvent />} /> 
+        
 
         <Route exact path="/myprofile" element={<MyProfile/>} />
       </Routes>

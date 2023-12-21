@@ -32,12 +32,12 @@ function NavBar(){
                 alt={'ShowGO'}
                 style={{ width: '100px', height: '100px' }}
                 />
+
+                </header>
                 <h4 className="header-button">
                     Hello {user.username} <br/>
                     <button onClick={logoutUser}> Logout </button>
                 </h4>
-                </header>
-                
                 <br/>
 
                 <Link to='/'>

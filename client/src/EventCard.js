@@ -8,7 +8,7 @@ function EventCard({ event }) {
 
         <h3>{event.event_name}</h3>
         <h4>{`With Headliner ${event.band.band_name}`}</h4>
-        <h5>{`At The ${event.venue.venue_name}`}</h5>{console.log(event)}
+        <h5>{`At The ${event.venue.venue_name}`}</h5>
         <Link to={`/venues/${event.venue.id}`}>Check Out Venue</Link>
 
       </div>
@@ -17,6 +17,4 @@ function EventCard({ event }) {
   );
 }
 
-export default EventCard;
-
-//<h4>{console.log(event.band.band_name)}</h4>
+export default EventCard

@@ -14,13 +14,15 @@ function DetailsBand() {
     return <div>Band not found</div>;
   } else {
 
-    const userFavBand = user.favorite_bands && user.favorite_bands.find((favBnd) => favBnd.fav_band_id === band.id);
+    console.log(band)
+
+    const userFavBand = user.favorite_bands && user.favorite_bands.find((favBnd) => favBnd.band.id === band.id);
     const isFav = userFavBand !== undefined;
     
     function updateBandsWithFavBand(favBandObject) {
 
     const updatedBands = bands.map((bnd) =>
-      bnd.id === favBandObject.fav_band_id ? { ...bnd, favorite_bands: [...bnd.favorite_bands, favBandObject] } : bnd
+      bnd.id === favBandObject.band.id ? { ...bnd, favorite_bands: [...bnd.band_name, favBandObject] } : bnd
     );
     setBands(updatedBands);
     }

@@ -76,7 +76,13 @@ function SignupForm(){
                 <button type="submit"> Signup </button>
             </form>
             
-            {errorsList ? errorsList.map((e) => ( <ul key={e} style={{color: "red"}}>{e}</ul>)) : null}
+            {errorsList ? errorsList.map((e) => ( 
+            <ul key={e}>
+            
+              <span style={{ backgroundColor: "black", color: "red" }}>{e}</span>
+            
+            </ul>)) : null}
+
             <h5> Already a Member? </h5>
         </div>
     )

@@ -14,14 +14,14 @@ function VenuesPage() {
     
     );
   } else {
+    const venuesMap = venues.map((venue) => (<VenueCard key={venue.id} venue={venue} />))
+
     return (
 
     <div>  
       <h2>Venues</h2>
       <div className="venues-container">
-      {venues.map((venue) => (
-          <VenueCard key={venue.id} venue={venue} />
-        ))}
+      {venuesMap}
       </div>
       <br/>
 

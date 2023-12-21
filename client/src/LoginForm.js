@@ -28,6 +28,7 @@ function LoginForm(){
             if (res.ok){
                 res.json().then((userData) => {
                     login(userData)
+                    setErrorsList([])
                     navigate('/myprofile')
                 })
             } else {

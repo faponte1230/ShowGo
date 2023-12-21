@@ -28,13 +28,13 @@ function UserProvider({ children }) {
                     // Check if userData.image_url is available before setting avatar
                     if (userData.image_url) {
                         setAvatar(userData.image_url);
-                        console.log('Avatar set in UserProvider:', userData.image_url);
+                        
                     }
                 } else {
                     setLoggedIn(false);
                 }
             } catch (error) {
-                console.error('Error fetching user data:', error);
+                ;
             }
         };
     
@@ -42,11 +42,11 @@ function UserProvider({ children }) {
     }, []);
 
     // Use useEffect to update avatar when user.image_url changes
-    useEffect(() => {
-        if (user.image_url) {
-            setAvatar(user.image_url);
-        }
-    }, [user.image_url]);
+    // useEffect(() => {
+    //     if (user.image_url) {
+    //         setAvatar(user.image_url);
+    //     }
+    // }, [user.image_url]);
 
 
 

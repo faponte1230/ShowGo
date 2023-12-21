@@ -15,11 +15,14 @@ function EventsPage() {
     </div>
   )
   } else { 
+
+    const eventsMap = events.map((event) => (<EventCard key={event.id} event={event} />))
+
     return (
     <div>
       <h2>EventsPage</h2>
       <div className="venues-container">
-      {events.map((event) => (<EventCard key={event.id} event={event} />))}       
+      {eventsMap}       
       </div>
     </div>
     )

@@ -16,13 +16,14 @@ function BandsPage() {
     </div>
   )
   } else { 
+
+    const bandsMap = bands.map((band) => (<BandCard key={band.id} band={band}/>))
+
     return (
     <div>
       <h2>Bands</h2>
       <div className="bands-container">
-      {bands.map((band) => (
-        <BandCard key={band.id} band={band}/>
-        ))}       
+      {bandsMap}       
       </div>
     </div>
     )
